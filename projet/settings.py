@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql', # Use of postgresql
         'NAME': 'healthy_nutrition', # le nom de notre base de données créée précédemment
         'USER': 'ratilekishvili', # attention : remplacez par votre nom d'utilisateur !!
-        'PASSWORD': 'diTna7-kyztig*',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
     }
