@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert-success alert-{{ messages.tags }}">
+            {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <section class="masthead">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-10 align-self-end">
+                    <h1 class="text-uppercase text-white font-weight-bold">
+                        DU GRAS, OUI, MAIS DE QUALITÉ !
+                    </h1>
+                    <hr class="divider my-4" />
+                </div>
+                <div class="col-lg-8 align-self-baseline">
+                    <p class="text-white-75 font-weight-light mb-5">
+                        Trouvez un produit de substitution pour ceux que vous consommez tous les jours.
+                    </p>
+                    <form>
+                      <p> <input type="text" name="input" placeholder=" Produit ..." id="nameInput">
+                      <button type="submit" class="home_button"/>
+                        <div class="add"> Rechercher 🔍</div>
+                        </button>
+                    </form> <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- Services-->
+    <section class="page-section" id="services">
+        <div class="container">
+            <h2 class="text-center mt-0">Colette et Remy</h2>
+            <p id="colette_remy_description"> Nous souhaitons vous permettre de trouver un
+                substitut sain à un aliment considéré comme "Trop gras, trop sucré, trop salé" <br>
+                (même si nous savons tous que le gras c’est la vie).
+            </p>
+            <hr class="divider my-4" />
+            <div class="row">
+                <div class="col-lg-6 col-md-6 text-center">
+                    <div class="mt-5">
+                        <h3 class="h4 mb-2">Remy</h3>
+                        <div> <img src="{% static 'application/assets/img/remy.jpg' %}"> </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 text-center">
+                    <div class="mt-5">
+                        <h3 class="h4 mb-2">Colette</h3>
+                        <div> <img src="{% static 'application/assets/img/colette.jpg' %}"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- Contact-->
+    <section class="page-section" id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mt-0">Contactez-nous!</h2>
+                    <hr class="divider my-4" />
+                    <p class="text-muted mb-5">
+                        Besoin d'un renseignement ? Contactez-nous !
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+                    <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+                    <div>+33 3 33 33 33 33</div>
+                </div>
+                <div class="col-lg-4 mr-auto text-center">
+                    <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                    <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
+                    <a class="d-block" href="mailto:contact@yourwebsite.com">contact@purbeurre.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
