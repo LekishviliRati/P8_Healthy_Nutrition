@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+name : {{ product }}<br/><br/>
+url : <a href="{{ product.url }}" target="_blank"> Lien OFF </a><br/><br/>
+<img class="products_images"
+src="{{ product.small_image_url }}"
+alt="small image"
+/><br/><br/>
+sugar : {{ product.sugar_100g }}<br/><br/>
+fat : {{ product.fat_100g }}<br/><br/>
+
+{% endblock %}

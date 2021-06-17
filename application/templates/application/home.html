@@ -20,14 +20,17 @@
                 <div class="col-lg-8 align-self-baseline">
                     <p class="text-white-75 font-weight-light mb-5">
                         Trouvez un produit de substitution pour ceux que vous consommez tous les jours.
+{#>> modié le 17/06#}
+                    <p>
+                        <form method="POST" action="{% url 'list_products' %}">
+                            {% csrf_token %}
+                            <input type="text" name="nav_input" placeholder="ex : Nutella " id="nav_input">
+                            <button type="submit" class="home_button"/>
+                            <div class="add"> Rechercher 🔍</div>
+                            </button>
+                        </form>
                     </p>
-                    <form>
-                      <p> <input type="text" name="input" placeholder=" Produit ..." id="nameInput">
-                      <button type="submit" class="home_button"/>
-                        <div class="add"> Rechercher 🔍</div>
-                        </button>
-                    </form> <br>
-                    </p>
+{#                     modié le 17/06 >>#}
                 </div>
             </div>
         </div>

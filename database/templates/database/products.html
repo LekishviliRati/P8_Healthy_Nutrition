@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if nav_input %}
+        <h2>Vous avez recherché " {{ nav_input }} "</h2>
+        <br/>
+        {% for product_found in researched_products %}
+{#            Display name of product#}
+            <a href="{% url 'show_product' product_found.id %}" target="_blank">
+{#            <a href="{% url 'show_product'%}">#}
+                {{ product_found.name }}
+            </a><br/> <br/>
+{#            display small picture #}
+            <img class="products_images"
+            src="{{ product_found.small_image_url }}"
+            alt="small image"
+            /><br/><br/>
+{#            link to Open Food Facts #}
+            <a href="{{ product_found.url }} target=_blank"> Lien OFF </a><br/><br/>
+{#            nutriscore#}
+            Nutriscore : {{ product_found.score }} <br/><br/>
+            <a href="{% url 'substitute_products' product_found.id %}" target="_blank">
+            Voir les subtituts
+            </a>  <br/><br/>
+
+
+        {% endfor %}
+    {% else %}
+        <h3> Il faut rentrer quelque chose sinon je ne peux rien chercher </h3>
+    {% endif %}
+
+{% endblock %}
+

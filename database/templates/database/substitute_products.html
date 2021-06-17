@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2> Liste des substituts</h2>
+
+    {% for substitute in substitutes %}
+        <li>
+            {{ substitute.name }} <br /><br />
+            <img class="substitute_image"
+            src="{{ substitute.small_image_url }}"
+            alt="small image"
+            /> <br/><br/>
+            Nutriscore : {{ substitute.score }} <br /><br />
+            url : <a href="{{ substitute.url }}" target="_blank"> Lien OFF </a><br/><br/>
+            <h4> Caractéristiques</h4>
+            <li> Sucre : {{ substitute.sugar_100g }}</li>
+            <li> Caloris : {{ substitute.kcal_100g }} </li>
+            <li> Sel : {{ substitute.salt_100g }} </li>
+            <li> Matières grasses : {{ substitute.fat_100g }} </li><br/><br/>
+        </li>
+    {% endfor %}
+
+    <a href="{% url 'home_page' %}"> Revenir à la page d'accueil </a><br/><br/><br/><br/>
+
+{% endblock %}

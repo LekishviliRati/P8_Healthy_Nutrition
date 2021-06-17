@@ -61,7 +61,16 @@
                     {% else %}
                         <div class="collapse navbar-collapse" id="navbarResponsive">
                             <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                                <li><p><input type="text" name="input" placeholder=" Chercher" id="nav_input"></p></li>
+{#                               >> Modifié le 15/06#}
+                                <li>
+                                    <p>
+                                        <form method="POST" action="{% url 'list_products' %}">
+                                            {% csrf_token %}
+                                            <input type="text" name="nav_input" placeholder="Chercher " id="nav_input">
+                                        </form>
+                                    </p>
+                                </li>
+{#                                Modifié le 15/06 >> #}
                                 <li class="nav-item">
                                     <a class="nav-link js-scroll-trigger" href="{% url 'register' %}">
                                         Inscription
