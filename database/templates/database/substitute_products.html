@@ -1,25 +1,100 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
+    <header
+        class="header_product_page"
+        style="
+            background:
+                linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%),
+                url(
+                  {% if product.image_url %}{{ product.image_url}}
+                  {% else %}
+                  {% endif %}
+                );
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;"
+      >
+    {#      <div class="container h-100">#}
+          <div class="container h-100">
+          <div
+            class="row h-100 align-items-center justify-content-center text-center"
+          >
+            <div class="col-lg-10 align-self-end">
+              <h5 class="header_product_page_text font-weight-bold">{{ product.name }}</h5>
+            </div>
+          </div>
+        </div>
+    </header>
 
-    <h2> Liste des substituts</h2>
+    {% if substitutes %}
+    {#    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#}
+            <section class="page-section" id="products_list">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">
+                    Vous pouvez remplacer cet aliment par :
+                </h2>
+                <hr class="divider" />
+                <div class="row gx-4 gx-lg-5 row justify-content-around">
+{#                        row justify-content-around allow space between each card#}
+                    {% for substitute in substitutes %}
+                        <div class="card col-lg-3 col-md-6 text-center">
+                            <img src="{{ substitute.small_image_url }}" class="card-img-top" alt="small_image_url">
+                            <div class="card-body text-center">
+                                <a href="{% url 'show_product' substitute.id %}" class="card-link">
+                                    <font color="black"><u><p>{{ substitute.name }}</p></u></font>
+                                </a>
+                                <a href="{{ substitute.url }}" target="_blank" class="card-link">
+                                    -> Lien OFF <-
+                                </a> <br /><br />
+                                <span class="card-score-{{ substitute.score }}">
+                                    {{ substitute.score }}
+                                </span>
+{#                                <h6 class="card-subtitle mb-2 text-muted">Nutriscore : {{ substitute.score }}</h6>#}
+                                <a class="btn btn-warning" href="{% url 'addfavorite' product.id substitute.id %}">
+                                Sauvegarder
+                                </a><br/><br/>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
 
-    {% for substitute in substitutes %}
-        <li>
-            {{ substitute.name }} <br /><br />
-            <img class="substitute_image"
-            src="{{ substitute.small_image_url }}"
-            alt="small image"
-            /> <br/><br/>
-            Nutriscore : {{ substitute.score }} <br /><br />
-            url : <a href="{{ substitute.url }}" target="_blank"> Lien OFF </a><br/><br/>
-            <h4> Caractéristiques</h4>
-            <li> Sucre : {{ substitute.sugar_100g }}</li>
-            <li> Caloris : {{ substitute.kcal_100g }} </li>
-            <li> Sel : {{ substitute.salt_100g }} </li>
-            <li> Matières grasses : {{ substitute.fat_100g }} </li><br/><br/>
-        </li>
-    {% endfor %}
-
-    <a href="{% url 'home_page' %}"> Revenir à la page d'accueil </a><br/><br/><br/><br/>
+{#    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#}
+    {% else %}
+    <h3> Aucun résultat trouvé :/ </h3>
+    {% endif %}
+{##}
+{##}
+{##}
+{##}
+{#    {% for substitute in substitutes %}#}
+{#        <li>#}
+{#            {{ substitute.name }} <br /><br />#}
+            {#            Display name of product#}
+{#            <a href="{% url 'show_product' substitute.id %}">#}
+{#            <a href="{% url 'show_product'%}">#}
+{#                {{ substitute.name }}#}
+{#            </a><br/> <br/>#}
+{#            <img class="substitute_image"#}
+{#            src="{{ substitute.small_image_url }}"#}
+{#            alt="small image"#}
+{#            /> <br/><br/>#}
+{#            Nutriscore : {{ substitute.score }} <br /><br />#}
+{#            url : <a href="{{ substitute.url }}" target="_blank"> Lien OFF </a><br/><br/>#}
+{#            <h4> Caractéristiques</h4>#}
+{#            <li> Sucre : {{ substitute.sugar_100g }}</li>#}
+{#            <li> Caloris : {{ substitute.kcal_100g }} </li>#}
+{#            <li> Sel : {{ substitute.salt_100g }} </li>#}
+{#            <li> Matières grasses : {{ substitute.fat_100g }} </li><br/><br/>#}
+{#        </li>#}
+        {#            Add to Farorites#}
+{#            <a class="btn btn-warning" href="{% url 'addfavorite' product.id substitute.id %}">#}
+{#                Ajouter aux favoris#}
+{#            </a><br/><br/>#}
+{#    {% endfor %}#}
+{##}
+{#    <a href="{% url 'home_page' %}"> Revenir à la page d'accueil </a><br/><br/><br/><br/>#}
 
 {% endblock %}

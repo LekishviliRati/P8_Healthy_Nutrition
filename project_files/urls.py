@@ -33,4 +33,6 @@ urlpatterns = [
     path('products/', database_views.list_products, name='list_products'),
     path('product_page/<int:product_id>/', database_views.show_product, name='show_product'),
     path('subtitute_product_page/<int:product_id>/', database_views.substitute_products, name='substitute_products'),
+    path('favorites/', database_views.favorites_page, name='favorites'),
+    path('addfavorite/<int:product_id>/<int:substitute_id>/', database_views.add_to_favorites_page, name='addfavorite'),
 ]

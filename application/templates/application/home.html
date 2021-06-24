@@ -24,7 +24,7 @@
                     <p>
                         <form method="POST" action="{% url 'list_products' %}">
                             {% csrf_token %}
-                            <input type="text" name="nav_input" placeholder="ex : Nutella " id="nav_input">
+                            <input type="text" name="nav_input" placeholder="ex : Nutella " id="nav_input_home">
                             <button type="submit" class="home_button"/>
                             <div class="add"> Rechercher 🔍</div>
                             </button>

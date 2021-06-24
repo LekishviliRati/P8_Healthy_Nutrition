@@ -3,6 +3,7 @@ database/models.py is creating the structure of  database (tables, table fields 
 """
 
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -30,3 +31,21 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.name}, {self.score}"
+
+
+class Favorites(models.Model):
+    """Comm."""
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name="product"
+    )
+    substitute = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name="substitute"
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user"
+    )
+
+    def __str__(self):
+        return (
+            f"Produit: {self.product}, Substitut: {self.substitute}, User: {self.user}"
+        )

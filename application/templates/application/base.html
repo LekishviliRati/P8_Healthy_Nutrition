@@ -39,21 +39,26 @@
                     {% if user.is_authenticated %}
                         <div class="collapse navbar-collapse" id="navbarResponsive">
                             <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                                <li><p><input type="text" name="input" placeholder=" Chercher" id="nav_input"></p></li>
+                                    <p>
+                                        <form method="POST" action="{% url 'list_products' %}" >
+                                            {% csrf_token %}
+                                            <input type="text" name="nav_input" placeholder="Chercher " id="nav_input_base">
+                                        </form>
+                                    </p>
+
                                 <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="{% url 'profile' %}">
-                                        Mon compte
+                                    <a class="nav-link js-scroll-trigger" href="{% url 'profile' %}" title="Mon Compte">
+                                        <div id="carrot"> <img src="{% static 'application/assets/img/person.png' %}"> </div>
                                     </a>
                                 </li>
-{#                                A ajouter la route vers mes aliments !! #}
                                 <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="{% url 'login' %}">
-                                        Mes aliments
+                                    <a class="nav-link js-scroll-trigger" href="{% url 'favorites' %}" title="Mes produits">
+                                        <div id="carrot"> <img src="{% static 'application/assets/img/carrot.png' %}"> </div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="{% url 'logout' %}">
-                                        Déconnexion
+                                    <a class="nav-link js-scroll-trigger" href="{% url 'logout' %}" title="Déconnexion">
+                                        <div id="carrot"> <img src="{% static 'application/assets/img/logout.png' %}"> </div>
                                     </a>
                                 </li>
                             </ul>
@@ -61,24 +66,20 @@
                     {% else %}
                         <div class="collapse navbar-collapse" id="navbarResponsive">
                             <ul class="navbar-nav ml-auto my-2 my-lg-0">
-{#                               >> Modifié le 15/06#}
-                                <li>
-                                    <p>
-                                        <form method="POST" action="{% url 'list_products' %}">
-                                            {% csrf_token %}
-                                            <input type="text" name="nav_input" placeholder="Chercher " id="nav_input">
-                                        </form>
-                                    </p>
-                                </li>
-{#                                Modifié le 15/06 >> #}
+                                <p>
+                                    <form method="POST" action="{% url 'list_products' %}" >
+                                        {% csrf_token %}
+                                            <input type="text" name="nav_input" placeholder="Chercher " id="nav_input_base">
+                                    </form>
+                                </p>
                                 <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="{% url 'register' %}">
-                                        Inscription
+                                    <a class="nav-link js-scroll-trigger" href="{% url 'register' %}" title="Inscription">
+                                        <div id="carrot"> <img src="{% static 'application/assets/img/registration.png' %}"> </div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link js-scroll-trigger" href="{% url 'login' %}">
-                                        Connexion
+                                    <a class="nav-link js-scroll-trigger" href="{% url 'login' %}" title="Connexion">
+                                        <div id="carrot"> <img src="{% static 'application/assets/img/login.png' %}"> </div>
                                     </a>
                                 </li>
                             </ul>

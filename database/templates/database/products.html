@@ -1,31 +1,86 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
+
     {% if nav_input %}
-        <h2>Vous avez recherché " {{ nav_input }} "</h2>
-        <br/>
-        {% for product_found in researched_products %}
+{#        <h2 class="text-center">Vous avez recherché " {{ nav_input }} "</h2>#}
+{#        <br/>#}
+{#        {% for product_found in researched_products %}#}
+{#            !!!!!!!!!!!!!!!!!!!!!!!!!#}
+        <section class="page-section" id="products_list">
+            <div class="container px-4 px-lg-5">
+                <h3 class="text-center mt-0">Vous avez recherché :
+                    <FONT color="#8b0000" size="15pt"> <B> {{ nav_input }} </B> </FONT>
+                </h3>
+                <hr class="divider" />
+                    <div class="row gx-4 gx-lg-5 row justify-content-around">
+{#                        row justify-content-around allow space between each card#}
+                    {% for product_found in researched_products %}
+                        <div class="card col-lg-3 col-md-6 text-center">
+{#                        Change card size#}
+                            <span class="card-score-{{ product_found.score }}">
+                                    {{ product_found.score }}
+                            </span>
+                            <img src="{{ product_found.small_image_url }}" class="card-img-top" alt="small_image_url">
+                            <div class="card-body text-center">
+                                <a href="{% url 'show_product' product_found.id %}" class="card-link">
+                                    <font color="black"><u><p>{{ product_found.name }}</p></u></font>
+                                </a>
+                                <a href="{{ product_found.url }}" target="_blank" class="card-link">
+                                    -> Lien OFF <-
+                                </a> <br /><br />
+{#                                <h6 class="card-subtitle mb-2 text-muted">Nutriscore : {{ product_found.score }}</h6>#}
+                                <a href="{% url 'substitute_products' product_found.id %}" class="btn btn-primary">
+                                    Voir les subtituts
+                                </a>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+            </div>
+        </section>
+
+{#            !!!!!!!!!!!!!!!!!!!!!!!!!#}
+{#            <div class="card_container">#}
+{#                <div class="card col-lg-4 col-md-12" style="width: 18rem;">#}
+{#                    <img src="{{ product_found.small_image_url }}" class="card-img-top" alt="small_image_url">#}
+{#                    <div class="card-body text-center">#}
+{#                        <a href="{% url 'show_product' product_found.id %}" class="card-link">#}
+{#                            <p>{{ product_found.name }}</p>#}
+{#                        </a>#}
+{#                        <a href="{{ product_found.url }}" target="_blank" class="card-link">Lien OFF</a> <br /><br />#}
+{#                        <h6 class="card-subtitle mb-2 text-muted">Nutriscore : {{ product_found.score }}</h6>#}
+{#                        <a href="{% url 'substitute_products' product_found.id %}" class="btn btn-primary">#}
+{#                            Voir les subtituts#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+
+
+{##}
 {#            Display name of product#}
-            <a href="{% url 'show_product' product_found.id %}" target="_blank">
+{#            <a href="{% url 'show_product' product_found.id %}">#}
 {#            <a href="{% url 'show_product'%}">#}
-                {{ product_found.name }}
-            </a><br/> <br/>
+{#                {{ product_found.name }}#}
+{#            </a><br/> <br/>#}
 {#            display small picture #}
-            <img class="products_images"
-            src="{{ product_found.small_image_url }}"
-            alt="small image"
-            /><br/><br/>
+{#            <img class="products_images"#}
+{#            src="{{ product_found.small_image_url }}"#}
+{#            alt="small image"#}
+{#            /><br/><br/>#}
 {#            link to Open Food Facts #}
-            <a href="{{ product_found.url }} target=_blank"> Lien OFF </a><br/><br/>
+{#            <a href="{{ product_found.url }}" target=_blank"> Lien OFF </a><br/><br/>#}
 {#            nutriscore#}
-            Nutriscore : {{ product_found.score }} <br/><br/>
-            <a href="{% url 'substitute_products' product_found.id %}" target="_blank">
-            Voir les subtituts
-            </a>  <br/><br/>
+{#            Nutriscore : {{ product_found.score }} <br/><br/>#}
+{#            <a href="{% url 'substitute_products' product_found.id %}">#}
+{#            Voir les subtituts#}
+{#            </a>  <br/><br/>#}
 
-
-        {% endfor %}
+{#        {% endfor %}#}
     {% else %}
-        <h3> Il faut rentrer quelque chose sinon je ne peux rien chercher </h3>
+        <h3> Aucun résultat trouvé :/ </h3>
     {% endif %}
 
 {% endblock %}
