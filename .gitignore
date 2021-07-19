@@ -2,3 +2,4 @@
 .coveragerc
 .idea
 geckodriver.log
+/env
