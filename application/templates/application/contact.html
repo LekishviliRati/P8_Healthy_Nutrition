@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Contact-->
+    <section class="page-section" id="contact_page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mt-0">Contactez-nous!</h2>
+                    <hr class="divider my-4" />
+                    <p class="text-muted mb-5">
+                        Besoin d'un renseignement ? Contactez-nous !
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+                    <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+                    <div>+33 3 33 33 33 33</div>
+                </div>
+                <div class="col-lg-4 mr-auto text-center">
+                    <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                    <a class="d-block" href="mailto:contact@yourwebsite.com">contact@purbeurre.com</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center">
+            <a href="{% url 'home_page' %}">
+            <br /><br /><br />
+            <h5> ☞ Revenir vers la page d'Accueil </h5>
+            </a>
+        </div>
+    </section>
+
+{% endblock %}

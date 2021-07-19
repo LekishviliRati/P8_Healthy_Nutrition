@@ -2,3 +2,6 @@ geckodriver.log
 db.sqlite3
 Pipfile
 Pipfile.lock
+.env/
+.coverage
+.coveragerc
