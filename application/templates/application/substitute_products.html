@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <header
+        class="header_product_page"
+        style="
+            background:
+                linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%),
+                url(
+                  {% if product.image_url %}{{ product.image_url}}
+                  {% else %}
+                  {% endif %}
+                );
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;"
+      >
+          <div class="container h-100">
+          <div
+            class="row h-100 align-items-center justify-content-center text-center"
+          >
+            <div class="col-lg-10 align-self-end">
+              <h5 class="header_product_page_text font-weight-bold">{{ product.name }}</h5>
+            </div>
+          </div>
+        </div>
+    </header>
+
+    {% if substitutes %}
+            <section class="page-section" id="products_list">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">
+                    Vous pouvez remplacer cet aliment par :
+                </h2>
+                <hr class="divider" />
+                <div class="row gx-4 gx-lg-5 row justify-content-around">
+{#                        row justify-content-around --> allow space between each card#}
+                    {% for substitute in substitutes %}
+                        <div class="card col-lg-3 col-md-6 text-center">
+                            <img src="{{ substitute.small_image_url }}" class="card-img-top" alt="small_image_url">
+                            <div class="card-body text-center">
+                                <a href="{% url 'product_page' substitute.id %}" class="card-link">
+                                    <font color="black"><u><p>{{ substitute.name }}</p></u></font>
+                                </a>
+                                <a href="{{ substitute.url }}" target="_blank" class="card-link">
+                                    -> Lien OFF <-
+                                </a> <br /><br />
+                                <span class="card-score-{{ substitute.score }}">
+                                    {{ substitute.score }}
+                                </span>
+                                <a class="btn btn-warning" href="{% url 'addfavorite' product.id substitute.id %}">
+                                Sauvegarder
+                                </a><br/><br/>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+    {% else %}
+        <br />
+        <h3 style="color: #d39e00"> ☞ Aucun produit trouvé pour votre recherche ... 🙄 </h3>
+        <a href="{% url 'home_page' %}">
+        <br />
+        <h5> >> Revenir au menu principal <<  </h5>
+        </a>
+    {% endif %}
+
+{% endblock %}

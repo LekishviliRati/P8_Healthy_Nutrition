@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if favorites %}
+            <section class="page-section" id="products_list">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">
+                    Mes favoris
+                </h2>
+                <hr class="divider" />
+                <div class="row gx-4 gx-lg-5 row justify-content-around">
+{#                        row justify-content-around allow space between each card#}
+                    {% for favorite in favorites %}
+                        <div class="card col-lg-3 col-md-6 text-center">
+                            <img src="{{ favorite.substitute.small_image_url }}" class="card-img-top" alt="small_image_url">
+                            <div class="card-body text-center">
+                                <a href="{% url 'product_page' favorite.substitute.id %}" class="card-link">
+                                    <font color="black"><u><p>{{ favorite.substitute.name }}</p></u></font>
+                                </a> <br />
+                                <a href="{% url 'product_page' favorite.product.id %}" class="card-link">
+                                    <p> <font color="black">Ce produit a été choisi pour substituer :</font>
+                                    <font color="#C45525"> <b><u>{{ favorite.product.name }}</u></b></font>
+                                    </p>
+                                </a> <br />
+
+                                <a href="{{ favorite.substitute.url }}" target="_blank" class="card-link">
+                                    -> Lien OFF <-
+                                </a> <br /><br />
+                                <a class="btn btn-danger" href="{% url 'deletefavorite' favorite.product.id favorite.substitute.id %}">
+                                Retirer des favoris
+                                </a>
+                            <span class="card-score-{{ favorite.substitute.score }}">
+                                    {{ favorite.substitute.score }}
+                            </span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+    {% else %}
+        <br />
+        <h3 style="color: #d39e00"> ⚠️ Aucun article dans vos favoris ... 🧐 </h3>
+        <a href="{% url 'home_page' %}" class="button">
+        <br />
+        <h5> ☞ Rechercher un produit à substituer 🔍 </h5>
+        </a>
+    {% endif %}
+
+{% endblock %}

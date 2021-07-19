@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    {% if nav_input %}
+        <section class="page-section" id="products_list">
+            <div class="container px-4 px-lg-5">
+                <h3 class="text-center mt-0">Vous avez recherché :
+                    <FONT color="#8b0000" size="15pt"> <B> {{ nav_input }} </B> </FONT>
+                </h3>
+                <hr class="divider" />
+                <div class="row gx-4 gx-lg-5 row justify-content-around">
+                {% if researched_products %}
+                    {% for product_found in researched_products %}
+                    <div class="card col-lg-3 col-md-6 text-center">
+{#                        Change card size#}
+                        <span class="card-score-{{ product_found.score }}">
+                                {{ product_found.score }}
+                        </span>
+                        <img src="{{ product_found.small_image_url }}" class="card-img-top" alt="small_image_url">
+                        <div class="card-body text-center">
+                            <a href="{% url 'product_page' product_found.id %}" class="card-link">
+                                <font color="black"><u>{{ product_found.name }}</u></font>
+                            </a>
+                            <br />
+                            <a href="{{ product_found.url }}" target="_blank" class="card-link">
+                                -> Lien OFF <-
+                            </a> <br /><br />
+                            <a href="{% url 'substitute_products' product_found.id %}" class="btn btn-primary">
+                                Voir les subtituts
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                        <br />
+                        <h4 style="color: #d39e00"> ⚠️ Aucun produit trouvé pour votre recherche ... 🙄
+                        <a href="{% url 'home_page' %}">
+                            ➤ Lancer une nouvelle recherche
+                        </a>
+                        </h4>
+                        <br /><br />
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+    {% else %}
+        <br />
+        <h3 style="color: #d39e00"> ⚠️ Vous n'avez rien rentrer dans la barre de recherche ... 🙄 </h3>
+        <a href="{% url 'home_page' %}">
+        <br />
+        <h5>  ➤ Lancer une nouvelle recherche </h5>
+        </a>
+    {% endif %}
+
+{% endblock %}
+

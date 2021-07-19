@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Pur Beurre</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <!-- Third party plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"  />
+    <link rel="stylesheet" type="text/css" href="{% static 'js/scripts.js' %}"  />
+</head>
+<body>
+    <header class="base_header">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home_page' %}">
+                    <div> <img src="{% static 'assets/img/logo.png' %}"> </div>
+                </a>
+                <a class="navbar-brand js-scroll-trigger" href="{% url 'home_page' %}">
+                    Pur Beurre
+                </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                        aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+                </button>
+                {% if user.is_authenticated %}
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                                <p>
+                                    <form method="POST" action="{% url 'list_products' %}" >
+                                        {% csrf_token %}
+                                        <input type="text" name="nav_input" placeholder="Chercher" id="nav_input_base">
+                                    </form>
+                                </p>
+
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" href="{% url 'profile' %}" title="Mon Compte">
+                                    <div id="carrot"> <img src="{% static 'assets/img/person.png' %}"> </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" href="{% url 'favorites' %}" title="Mes produits">
+                                    <div id="carrot"> <img src="{% static 'assets/img/carrot.png' %}"> </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" href="{% url 'logout' %}" title="Déconnexion">
+                                    <div id="carrot"> <img src="{% static 'assets/img/logout.png' %}"> </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                            <p>
+                                <form method="POST" action="{% url 'list_products' %}" >
+                                    {% csrf_token %}
+                                        <input type="text" name="nav_input" placeholder="Chercher" id="nav_input_base">
+                                </form>
+                            </p>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" href="{% url 'register' %}" title="Inscription" id="Inscription">
+                                    <div id="carrot"> <img src="{% static 'assets/img/registration.png' %}"> </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" href="{% url 'login' %}" title="Connexion" id="Connexion">
+                                    <div id="carrot"> <img src="{% static 'assets/img/login.png' %}"> </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% block content %} {% endblock %}
+
+        <footer>
+            <!-- legal notices-->
+            <section class="page-section-footer" id="legal_notices">
+                    <div class="row">
+                        <div class="col-lg-6 text-center">
+                            <a class="d-block" href="{% url 'legal_notices' %}" target="_blank">
+                                <h7> Mentions légales </h7></a>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <a class="d-block" href="{% url 'contact' %}"> <h7>Contact</h7></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+</body>
+</html>
