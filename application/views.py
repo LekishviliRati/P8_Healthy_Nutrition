@@ -50,7 +50,6 @@ def substitute_products(request, product_id):
 
 @login_required
 def add_to_favorites_page(request, product_id, substitute_id):
-    """Comment."""
     product = Product.objects.get(pk=product_id)
     substitute = Product.objects.get(pk=substitute_id)
     user = User.objects.get(
@@ -67,13 +66,11 @@ def add_to_favorites_page(request, product_id, substitute_id):
 
 @login_required
 def delete_from_favorites_page(request, product_id, substitute_id):
-    """Comment."""
     product = Product.objects.get(pk=product_id)
     substitute = Product.objects.get(pk=substitute_id)
     user = User.objects.get(
         pk=request.user.id
     )
-    # favorite = Favorites(product=product, substitute=substitute, user=user)
     favorite = Favorites.objects.filter(product=product, substitute=substitute, user=user)
 
     try:
@@ -85,7 +82,6 @@ def delete_from_favorites_page(request, product_id, substitute_id):
 
 @login_required
 def favorites_page(request):
-    """Comment."""
     user_id = User.objects.get(pk=request.user.id)
     favorites = Favorites.objects.filter(user_id=user_id)
 

@@ -10,7 +10,6 @@ class Api:
         self.download_products()
 
     def download_products(self):
-        """Comments."""
         API_REQUEST = "https://fr.openfoodfacts.org/cgi/search.pl?" \
                       "action=process&tagtype_0=countries&tag_contains_0=contains&" \
                       "tag_0=france&sort_by=unique_scans_n&page_size=750&json=true&" \
@@ -24,7 +23,6 @@ class Api:
                 request = requests.get(API_REQUEST)
                 if request.status_code == 200:
                     self.products = request.json()["products"]
-
                 else:
                     err = f"ERROR : {request.status_code}"
                     print(err)
@@ -46,7 +44,6 @@ class Api:
                 and article.get('nutriments')
                 and article.get('nutriscore_grade') is not None
             ):
-
                 products_with_no_empty_fields.append(article)
 
         return products_with_no_empty_fields

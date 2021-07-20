@@ -6,7 +6,6 @@ from application.api import Api
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        """"""
         self.clear_db()
         self.save_products()
 

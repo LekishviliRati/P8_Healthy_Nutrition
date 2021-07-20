@@ -8,7 +8,6 @@ from accounts.models import CustomUser as User
 
 
 class Category(models.Model):
-    """Com."""
     name = models.CharField(max_length=150, unique=True)
 
     def __str__(self):
@@ -16,7 +15,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    """Com."""
     name = models.CharField(max_length=250)
     brand = models.CharField(max_length=250)
     barcode = models.CharField(max_length=13, unique=True)
@@ -35,7 +33,6 @@ class Product(models.Model):
 
 
 class Favorites(models.Model):
-    """Comm."""
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name="product"
     )

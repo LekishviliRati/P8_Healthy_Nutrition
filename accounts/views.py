@@ -11,7 +11,6 @@ def register(request):
             form.save()
             return redirect('login')
     return render(request, 'accounts/register.html', {'form': form})
-    # return render(request, 'accounts/register.html')
 
 
 @login_required
