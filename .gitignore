@@ -7,6 +7,7 @@
 .idea
 geckodriver.log
 /env
+environment.env
 
 
 # Byte-compiled / optimized / DLL files
@@ -116,7 +117,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+better_nutrition/.env
 .venv
 env/
 venv/
