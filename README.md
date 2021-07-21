@@ -41,7 +41,6 @@ ___
 - **Overall tests** : python3 manage.py test
 - **Coverage report** : coverage run manage.py test -v 2 && coverage report
 
-
 ### *User Journey* 😎
 
 - Research a product to substitute.
@@ -73,7 +72,7 @@ ___
 ### *Website*
 
 -  You can visit my application on : 
-  >
+  > https://betternutrition.herokuapp.com
 
 ### *External resources*
 
