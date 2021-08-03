@@ -39,7 +39,7 @@ class Command(BaseCommand):
             url = product.get("url")
             picture = product.get("image_url")
             small_picture = product.get("image_small_url")
-            categories = categories = [
+            categories = [
                 name.strip().lower().capitalize()
                 for name in product["categories"].split(",")
             ]

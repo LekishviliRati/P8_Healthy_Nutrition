@@ -26,7 +26,7 @@ class LoginTest(unittest.TestCase):
 
         # Fill connexion fields and enter
         email_box = self.browser.find_element_by_id('id_username')
-        email_box.send_keys('jean.martin@gmail.com')
+        email_box.send_keys('jean.martin2@gmail.com')
         time.sleep(2)
         password_box = self.browser.find_element_by_id('id_password')
         password_box.send_keys('Django_74')

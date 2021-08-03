@@ -32,7 +32,7 @@ class RegistrationTest(unittest.TestCase):
         last_name_box.send_keys('Martin')
         time.sleep(2)
         email_box = self.browser.find_element_by_id('id_email')
-        email_box.send_keys('jean.martin@gmail.com')
+        email_box.send_keys('jean.martin2@gmail.com')
         time.sleep(2)
         password1_box = self.browser.find_element_by_id('id_password1')
         password1_box.send_keys('Django_74')

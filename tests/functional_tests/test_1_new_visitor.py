@@ -41,7 +41,7 @@ class NewVisitorTest(unittest.TestCase):
 
         # Check if visitor can access to a product page
         product_page = \
-            self.browser.find_element_by_link_text('Nutella biscuits')
+            self.browser.find_element_by_link_text('Nutella')
         product_page.click()
         time.sleep(3)
         self.browser.back()

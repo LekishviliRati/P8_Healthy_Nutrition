@@ -36,5 +36,4 @@ urlpatterns = [
     path('delete_favorite/<int:product_id>/<int:substitute_id>/',
          application_views.delete_from_favorites_page, name='deletefavorite'),
     path('favorites/', application_views.favorites_page, name='favorites'),
-
 ]

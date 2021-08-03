@@ -10,26 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+from dotenv import load_dotenv
 import django_heroku
 from pathlib import Path
 
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-u2zc5rx%p6rvf6ds-&d_)1%un)^s+1pou!@=*ilh!@*5rbldpd"
-# SECRET_KEY = os.environ.get('SECRET_KEY')
-
+SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 # Only if you are working in dev environment
-# DEBUG = True
+DEBUG = True
 
 # Must be turned False in production
-DEBUG = False
+# DEBUG = False
 
 ALLOWED_HOSTS = ['betternutrition.herokuapp.com']
 
