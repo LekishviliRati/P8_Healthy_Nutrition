@@ -26,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 # Only if you are working in dev environment
-DEBUG = True
+# DEBUG = True
 
 # Must be turned False in production
-# DEBUG = False
+DEBUG = False
 
 ALLOWED_HOSTS = ['betternutrition.herokuapp.com']
 
